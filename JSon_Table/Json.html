@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"/>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      <style type="text/css">
+        body{
+          width: 100%;
+          background: rgba(0,0,0,0.4);
+        }
+        #box{
+          height:800px;
+          width: 100%;
+        }
+      </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script type="text/javascript">
+
+      var json = [
+        {
+          "name":"employees",
+          "employees":[
+            {"firstName":"John", "lastName":"Doe"}, 
+            {"firstName":"Anna", "lastName":"Smith"},
+            {"firstName":"Peter", "lastName":"Jones"}
+          ]
+        }
+      ,
+        {
+          "name":"students",
+          "students":[
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}
+          ]
+        }
+      ];
+      //console.log(json[1].students[0].firstName);
+      createEmployeeTable();
+      createStudentsTable();
+      var table;
+      function createEmployeeTable(){
+        table = document.createElement("table");
+        var row = document.createElement("tr");
+        var employeesArr = ["Firstname", "Lastname"];
+        for(let i = 0; i < employeesArr.length; i++){
+          var header = document.createElement("th");
+          header.textContent = employeesArr[i];
+          row.append(header);
+        }
+        table.append(row);
+        table.style.border = "2px solid";
+        
+        table.style.borderCollapse = "collapse";
+        document.getElementById("box").append(table);
+        for(let i = 0; i < json[0]["employees"].length; i++){
+          addRow(json[0]["employees"][i]);
+        }
+      }
+      function createStudentsTable(){
+        table = document.createElement("table");
+        var row = document.createElement("tr");
+        var studentsArr = ["Firstname", "Lastname", "Phone", "E-mail", "Status"];
+        for(let i = 0; i < studentsArr.length; i++){
+          var header = document.createElement("th");
+          header.textContent = studentsArr[i];
+          row.append(header);
+        }
+        table.append(row);
+        table.style.border = "2px solid";
+        table.style.borderCollapse = "collapse";
+        document.getElementById("box").append(table);
+        for(let i = 0; i < json[1]["students"].length; i++){
+          addRow(json[1]["students"][i]);
+        }
+      }
+      //<i class="fas fa-circle"></i>
+      function addRow(obj){
+        var row = document.createElement("tr");
+        for(var item in obj){
+          var cell = document.createElement("td");
+          if(obj[item] == "active"){
+            var dot = document.createElement('i');
+            dot.classList.add("fas", "fa-circle");
+            dot.style.color = "white";
+            cell.appendChild(dot);
+          }else if(obj[item] == "inactive"){
+            var dot = document.createElement('i');
+            dot.classList.add("fas", "fa-circle");
+            dot.style.color = "black";
+            cell.appendChild(dot);
+          }else{
+            cell.textContent = obj[item];
+          }
+          cell.style.border = "2px solid";
+          row.append(cell);
+          row.style.border = "2px solid";
+        }
+
+        table.append(row);
+    }
+
+    </script>
+  </body>
+</html>
