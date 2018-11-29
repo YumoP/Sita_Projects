@@ -1,0 +1,357 @@
+*{
+	margin:0;
+	padding:0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	height:100%;
+	width:100%;
+	background:black;
+	background-position: center;
+}
+.box{ 
+	width:60%;
+	position: relative;
+	height: 540px;
+	text-align:center;
+	margin:0 auto;
+}
+.box1{
+	width:10%;
+	height: auto;
+	animation-name: boxl;
+	position: relative;
+}
+
+.box2{
+	width:10%;
+	height: auto;
+	animation-name: boxr;
+	position: relative;
+}
+
+.box3{
+	width:10%;
+	height: auto;
+	position: relative;
+}
+
+.boxx{
+	position: absolute;
+	margin-left: 37%;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+	margin-top: 3%;
+	animation-delay: 3s;
+}
+@keyframes boxl{
+	from{
+
+	}
+	to{
+  		transform: translate(400%,0px);
+	}
+}
+
+@keyframes boxr{
+	from{
+
+	}to{
+ 		transform: translate(-400%,0px);
+	}
+}
+
+@keyframes textext{
+	from{
+  		color: white;
+	}to {
+  		color: #363636;
+	}
+}
+.iphonelogo{
+	position: absolute;
+	padding-left: 40px;
+	top:10px;
+}
+.image{
+	display: block;
+}
+#largeCentered{
+    float: none;
+    text-align: center;
+}
+.title{
+	margin:0 auto;
+	width: 75%;
+	padding:30px;
+	font-size: 64px;
+	line-height: 1.0625;
+    font-weight: 600;
+	letter-spacing: -.009em;
+	font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+	color:wheat;
+	text-align: center;
+}
+.text{
+	color:wheat;
+}
+.initialHeader {
+	height: 20px;
+	position: relative;
+  	padding: 10px 16px;
+  	background: rgba(2,2,2,0.6);
+  	color: #f1f1f1;
+
+}
+.fixedHeader {
+	top: 0px;
+	position: fixed;
+  	padding: 10px 16px;
+  	background:  rgba(2,2,2,0.6);
+  	color: #f1f1f1;
+  	width: 100%;
+}
+#topHeader {
+	position: static;
+	top: 0;
+	left: 0;
+	padding: 0 3%;
+	background: #262626;
+	width: 100%;
+	box-sizing: border-box;
+	opacity: 0.88;
+	box-shadow:3px 3px 3px 3px rgba(3,3,3,0.6);
+}
+#topHeader .logo {
+	color: #fff;
+	height: 30px;
+	line-height: 50px;
+	float:left;
+}
+#topHeader .logo i {
+	font-size: 25px;
+	font-weight: 900;
+}
+#topHeader nav {
+	width: 100%;
+	padding: 0;
+	height:45px;
+}
+#topHeader nav ul {
+	padding: 0;
+	border-radius: 20px;
+	margin: 0 auto;
+	padding: 0 auto;
+	display: flex;
+	width: fit-content;
+}
+#topHeader nav ul li {
+	position: relative;
+	list-style: none;
+}
+#topHeader nav ul li.smenu:before {
+	font-size: 10px;
+	position: absolute;
+	line-height: 50px;
+	color:#fff;
+}
+#topHeader nav ul li ul{
+	position: absolute;
+	left:0;
+	background: #222;
+	display: none;
+	box-shadow: 0 0 2px #222, 0 0 3px #444, 0 0 4px #333, 0 0 1px #666, 
+    0 0 1px #888, 0 0 1px #333, 0 0 2px #777;
+}
+#topHeader nav ul li:hover ul{
+	display: block;
+}
+#topHeader nav ul li ul li{
+	display: block;
+	width:200px;
+}
+#topHeader nav ul li a {
+	font-size: 11px;
+	border-radius: 4px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 34px;
+	color: #fff;
+	text-decoration: none;
+	display: block;
+}
+#topHeader nav ul li a:hover,
+#topHeader nav ul li a.active
+{
+	color:black;
+	background: white;
+}
+.menu-toggle{
+	color: #fff;
+	float: left;
+	line-height: 40px;
+	font-size: 24px;
+	cursor: pointer;
+	display: none;
+}
+.menuBtn {
+	background-color:transparent;
+	color: rgba(250,250,250,0.8);
+	cursor: pointer;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+	text-align: left;
+}
+.bottomSmenu {
+	float: left;
+	width:20%;
+}
+.bottomSmenu ul{
+	text-align: left;
+	padding-left:6px;
+	display: block;
+	list-style: none;
+}
+a{
+	display: block;
+	text-decoration: none;
+	padding-bottom: 5px;
+	padding-left:5px;
+	color:rgba(210,210,210,0.5);
+}
+#bottomList{
+	box-sizing: content-box;
+	width: 90%;
+	height: 300px;
+	position: relative;
+	background: black;
+	padding-left: 4%; 
+}
+@media (max-width: 768px){
+	.menuBtn {
+    	color: rgba(255,255,255,0.7);
+    	cursor: pointer;
+    	padding: 10px;
+    	width: 100%;
+    	outline: none;
+    	font-size: 15px;
+    	transition: 0.4s;
+    	text-align: left;
+    	background-color: rgba(1,1,1,0.3);
+    	border-top:1px solid rgba(200,200,200,0.6);
+		border-bottom: 1px solid rgba(200,200,200,0.6);
+	}
+
+	a{
+		padding: 10px;
+	}
+	.active, .menuBtn:hover {
+		color: white; 
+	}	
+	.bottomSmenu {
+		float: none;
+		width: 100%;
+	}
+	.bottomSmenu ul{
+		display: none;
+	}
+	#bottomList{
+		padding: 0;
+	}
+	#myHeader{
+		display: none;
+	}
+
+	#topHeader nav ul li.active ul{
+		display: block;
+	}	
+	.iphonepic1{
+		width: 100%;
+		background-image: url("apple1.png");
+		background-size: 100% 100%;
+	}
+	#topHeader{
+		padding: 0 40px;
+		text-align:center
+		min-width: 500px;
+		background-color:#000;
+	}
+	#topHeader .logo {
+		color: #fff;
+		height: 30px;
+		line-height: 20px;
+		font-size: 25px;
+		left: 48.5%;
+		position: absolute;
+
+	}
+	.menu-toggle{
+		float:left;
+		display: block;
+	}
+	#topHeader nav{
+		display: none;
+		position: absolute;
+		width: 100%;
+		height: calc(100vh - 50px);
+    	background:black;
+		top: 49px;
+		left: 0;
+		animation: navAnmi 0.6s linear;
+	}
+	@keyframes navAnmi{
+    	0%   {
+    		opacity: 0.2;
+    		background:black;
+    		left: -200px; 
+    		top: 49px;
+    	}
+    	25%  {
+    		opacity: 0.25;
+    		background:black;
+    		left: -150px; 
+    		top: 49px;
+    	}
+    	50%  {
+    		opacity: 0.3;
+    		background:black;
+    		left: -100px; 
+    		top: 49px;
+    	}
+    	70%  {
+    		opacity: 0.6;
+    		background:black;
+    		left: -50px; 
+    		top: 49px;
+    	}
+    	100%  {
+    		opacity: 1;
+    		background:black;
+    		left: 0px; 
+    		top: 49px;
+    	}
+	}
+
+	#topHeader nav ul{
+		display: block;
+		text-align: center;
+		width: auto;
+	}
+	#topHeader nav ul li a{
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+	}
+	#topHeader nav ul li.smenu ul {
+		position: relative;
+		background:#555;
+	}
+	#topHeader nav ul li ul li{
+		width: 100%;
+	}
+}

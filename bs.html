@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body{
+		font-family: sans-serif;
+	}
+	a:link,
+	a:visited{
+		text-decoration: none;
+	}
+	.modal{
+		background-color: rgba(0,0,0, .8);
+		width:100%;
+		height: 100vh;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		opacity: 0;
+		visibility: hidden;
+		transition: all .5s;
+	}
+	.modal__content{
+		width: 75%;
+		height: 65%;
+		background-color: #fff;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 2em;
+		border-radius: 1em;
+		opacity: 0;
+		visibility: hidden;
+		transition: all .5s;
+	}
+	#modal:target{
+		opacity: 1;
+		visibility: visible;
+	}
+	#modal:target .modal__content{
+		opacity: 1;
+		visibility: visible;
+	}
+	.modal__close{
+		color: #363636;
+		font-size: 2em;
+		position: absolute;
+		top: .5em;
+		right: 1em;
+	}
+	.modal__heading{
+		color: dodgerblue;
+		margin-bottom: 1em;
+	}
+	.modal__paragraph{
+		line-height: 1.5em;
+	}
+	.modal-open{
+		display: block;
+		color: dodgerblue;
+		margin: 2em;
+	}
+
+
+
+		/* Popup container */
+	.popup {
+	    position: relative;
+	    display: block;
+	    cursor: pointer;
+	    margin: 2em;
+	    color:dodgerblue;
+	}
+
+	/* The actual popup (appears on top) */
+	.popup .popuptext {
+	    visibility: hidden;
+	    width: 160px;
+	    background-color: #555;
+	    color: #fff;
+	    text-align: center;
+	    border-radius: 6px;
+	    padding: 8px 0;
+	    position: absolute;
+	    z-index: 1;
+	    bottom: 125%;
+	    left: 50%;
+	    margin-left: -80px;
+	}
+
+	/* Popup arrow */
+	.popup .popuptext::after {
+	    content: "";
+	    position: absolute;
+	    top: 100%;
+	    left: 50%;
+	    margin-left: -5px;
+	    border-width: 5px;
+	    border-style: solid;
+	    border-color: #555 transparent transparent transparent;
+	}
+
+	/* Toggle this class when clicking on the popup container (hide and show the popup) */
+	.popup .show {
+	    visibility: visible;
+	    -webkit-animation: fadeIn 1s;
+	    animation: fadeIn 1s
+	}
+
+	/* Add animation (fade in the popup) */
+	@-webkit-keyframes fadeIn {
+	    from {opacity: 0;} 
+	    to {opacity: 1;}
+	}
+
+	@keyframes fadeIn {
+	    from {opacity: 0;}
+	    to {opacity:1 ;}
+	}
+
+
+
+	.tooltip {
+	    position: relative;
+	    display: block;
+	    color:dodgerblue;
+	}
+
+	.tooltip .tooltiptext {
+	    visibility: hidden;
+	    width: 120px;
+	    background-color: #555;
+	    color: #fff;
+	    text-align: center;
+	    border-radius: 6px;
+	    padding: 5px 0;
+	    position: absolute;
+	    z-index: 1;
+	    bottom: 125%;
+	    left: 50%;
+	    margin-left: -60px;
+	    opacity: 0;
+	    transition: opacity 0.3s;
+	}
+
+	.tooltip .tooltiptext::after {
+	    content: "";
+	    position: absolute;
+	    top: 100%;
+	    left: 50%;
+	    margin-left: -5px;
+	    border-width: 5px;
+	    border-style: solid;
+	    border-color: #555 transparent transparent transparent;
+	}
+
+	.tooltip:hover .tooltiptext {
+	    visibility: visible;
+	    opacity: 1;
+	}
+</style>
+</head>
+<body style="text-align: center;">
+	<div style="text-align:center"> 
+ <a href="#modal" class="modal-open">Open Modal</a>
+ </div>
+ <div class="modal" id="modal">
+    <div class="modal__content">
+      <a href="#" class="modal__close">&times;</a>
+      <h2 class="modal__heading">Modal</h2>
+      <p class="modal__paragraph">Modal asdhfgasdgfas dhsfgajshdfga jdfg ahjsdgf hasdg fasdfg hasdgf sahdfg ashdfg jsahdfg sahdfg ashdfg asjdfhg asdhf gasdfgahsdfg hdgf hsdfg shdg fhsdfg shdgf hsdfg hsdgf shdfg shdferwe dsfhoewr fdlasdfkewour af </p>
+    </div>
+ </div>
+
+<div class="popup" onclick="myFunction()">Click for Popup
+  <span class="popuptext" id="myPopup">Popup here</span>
+</div>
+
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
+
+<script>
+	// When the user clicks on <div>, open the popup
+	function myFunction() {
+	    var popup = document.getElementById("myPopup");
+	    popup.classList.toggle("show");
+	}
+</script>
+</body>
+</html>
