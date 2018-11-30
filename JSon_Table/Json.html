@@ -6,12 +6,13 @@
       <style type="text/css">
         body{
           width: 40%;
-          height: auto;
+          height: 760px;
           text-align: center;
           margin: 0 auto;
           padding: 0;
-          background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url("work2.jpg");
+          background: linear-gradient(rgba(0,0,0,0.87), rgba(0,0,0,0.87)), url("work2.jpg");
           background-size: 100%, 100%;
+          background-attachment: fixed;
           
         }
         .bigBoxClass{
@@ -26,7 +27,7 @@
           height: 100%;
           font-family: 'Century Gothic', sans-serif;
           text-align: center;
-          background-color: rgba(0,0,0,0.92);
+          background-color: rgba(70,210,255,0.19);
         }
         .boxClass{
           border-radius: 25px;
@@ -40,13 +41,13 @@
           height: 100%;
           font-family: 'Century Gothic', sans-serif;
           text-align: center;
-          background-color: rgba(0,0,0,0.92);
+          background-color:rgba(70,210,255,0.19); 
         }
         #box{
           text-align:center;
           height: auto;
           width: 100%;
-          border: 3px solid;
+          border: 1.5px solid rgba(70,210,255,0.19);
           margin: auto;
           margin-bottom: 30px;
           margin-top: 30px;
@@ -57,7 +58,7 @@
           margin: auto;
           width:100%;
           height: auto;
-          border: 3px solid;
+          border: 1.5px solid rgba(70,210,255,0.19);
           margin-bottom: 30px;
         }
         #addEmployeeBox{
@@ -65,7 +66,7 @@
           text-align:center;
           height: auto;
           width: 100%;
-          border: 3px solid;
+          border: 1.5px solid rgba(70,210,255,0.19);
           margin-bottom: 30px;
         }
         #editStudentBox{
@@ -73,7 +74,7 @@
           margin: auto;
           width:100%;
           height: auto;
-          border: 3px solid;
+          border: 1.5px solid rgba(70,210,255,0.19);
           margin-bottom: 30px;
         }
         #addStudentBox{
@@ -81,7 +82,7 @@
           text-align:center;
           height: auto;
           width: 100%;
-          border: 3px solid;
+          border: 1.5px solid rgba(70,210,255,0.19);
           margin-bottom: 30px;
         }
         .inputbar{
@@ -167,7 +168,7 @@
           text-shadow: 0 0 5px #AAEAFB, 0 0 10px #AAEAFB, 0 0 2px #0D2752, 0 0 6px #AAEAFB, 0 0 4px #F6FBAA, 0 0 55px #ff0080, 0 0 75px #AAFBBB;
           box-shadow: 0px 0px 5px 3px rgba(211, 251, 254, 0.93);
           display: inline-block;
-          font-weight: 100;
+          font-weight: 600;
           margin: 8px 25px;
           margin-top: 20px;
           margin-bottom: 30px;
@@ -374,6 +375,7 @@
         eIcon.classList.add("fas", "fa-user-edit");
         editButton.appendChild(eIcon);
         editButton.onclick = function(){editEmployee(index);};
+        editButton.style.borderRadius="38px";
         var deleteButton = document.createElement("button");
         var dIcon = document.createElement('i');
         dIcon.classList.add("fas", "fa-user-minus");
@@ -381,11 +383,12 @@
         deleteButton.onclick = function(){deleteEmployee(index);}
         editButton.classList.add("button");
         deleteButton.classList.add("button");
+        deleteButton.style.borderRadius="38px";
         var cell1 = document.createElement("td");
         cell1.appendChild(editButton);
+        row.append(cell1);
         var cell2 = document.createElement("td");
         cell2.appendChild(deleteButton);
-        row.append(cell1);
         row.append(cell2);
         row.style.border = "2px solid";
         table.append(row);
@@ -417,6 +420,7 @@
         eIcon.classList.add("fas", "fa-user-edit");
         editButton.appendChild(eIcon);
         editButton.onclick = function(){editStudent(index);};
+        editButton.style.borderRadius="38px";
         var deleteButton = document.createElement("button");
         var dIcon = document.createElement('i');
         dIcon.classList.add("fas", "fa-user-minus");
@@ -424,6 +428,7 @@
         deleteButton.onclick = function(){deleteStudent(index);}
         editButton.classList.add("button");
         deleteButton.classList.add("button");
+        deleteButton.style.borderRadius="38px";
         var cell1 = document.createElement("td");
         cell1.appendChild(editButton);
         var cell2 = document.createElement("td");
@@ -431,6 +436,7 @@
         row.append(cell1);
         row.append(cell2);
         row.style.border = "2px solid";
+        row.style.padding ="10px";
         table.append(row);
     }
     function editEmployee(index){
@@ -496,10 +502,6 @@
       json[0]["employees"][json[0]["employees"].length] = {"firstName":document.getElementById("employeeAFN").value, 
       "lastName":document.getElementById("employeeALN").value, 
       }      
-      var boxes = document.getElementsByClassName("boxClass");
-      for(let i = 0; i < boxes.length; i++){
-        boxes[i].style.display = "none";
-      }
       deleteTable();
       createEmployeeTable();
       createStudentsTable();
@@ -510,10 +512,6 @@
       "email":document.getElementById("studentAEM").value,
       "phone":document.getElementById("studentAPH").value,
       "status":document.getElementById("studentAST").value}
-      var boxes = document.getElementsByClassName("boxClass");
-      for(let i = 0; i < boxes.length; i++){
-        boxes[i].style.display = "none";
-      }
       deleteTable();
       createEmployeeTable();
       createStudentsTable();
