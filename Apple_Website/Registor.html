@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no" />
+  <meta name="author" content="Leo Pan" />
+  <meta name="description" content="Registor" />
+  <meta name="Keywords" content="Html, css, responsive" />
+  <script src="./JS/JQuery.js"></script>
+
+	<style>
+		body{
+			background-image: url("black.jpg"); 
+		  background-position: center;
+	    background-color: black;
+	    background-repeat: no-repeat;
+      background-size:cover;
+      background-attachment: fixed;
+      position:absolute;
+      top:0;
+      left:0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+		}
+
+	  .box{
+  		border-radius: 25px;
+  		box-shadow: 3px 3px 18px 4px rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+  		width: 88%;
+  		background-color: rgba(3,3,4,0.78);
+  		padding: 15px;
+  		margin:0 auto;
+  		text-align: center;
+
+  		color: white;
+  		font-family: 'Century Gothic', sans-serif;
+  		max-width: 700px;
+  	}
+
+  	.inputbar{
+  		height: 25px;
+  		width: 60%;
+  		font-size:18px;
+      background-color: rgba(0, 0, 0, 0.39);
+      border-color:rgba(180,180,180,0.70);
+      color:rgba(255, 255, 255, 0.73);;
+  	}
+    
+    .inputbar:hover{
+      box-shadow:0px 0px 2px 2px grey;
+      border-radius: 6px;
+    }
+
+    .inputbar:focus{
+      font-size: 18px;
+      color:rgba(255, 255, 255, 0.93);;
+    }
+    .inputbar::placeholder{
+      font-size:16px;
+      color:rgba(255, 255, 255, 0.73);;
+    }
+  	.button {
+  		outline: none;
+  		font-size:10vw;
+			border-radius: 13px;
+    	background-color: rgba(255, 255, 255, 0.73);;
+    	border: none;
+    	color: black;
+    	padding: 15px 32px;
+    	text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	font-size: 16px;
+      font-weight: bold;
+    	margin: 8px 25px;
+    	cursor: pointer;
+		}
+		.button:hover{
+		  border-radius: 15px;
+			background-color: rgba(0, 0, 0, 0.19);
+			box-shadow:0px 0px 3px 4px grey;
+      color:white;
+		}
+    table {
+      width: 100%;
+      margin: 0 auto;
+    }
+    td {
+      padding: 3px;
+    }
+    tr {
+      width:100%;
+    }
+    .tdlabel {
+      text-align: right;
+      padding-right: 15px;
+    }
+    .tdinput {
+      text-align: left;
+      padding-left: 15px;
+    }
+    label { 
+      padding-right: 5px;
+      font-size:28px;
+    }
+    input {
+      text-align: left;
+      padding-left: 5px;
+      size:30%;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    .textarea{
+      width: 60%;
+      height:70px;
+    }
+    .message{
+      font-size: 10px;
+      color: red;
+      display: none;
+    }
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+    <table align="center">
+      <h1 style="color:rgba(255, 255, 255, 0.73);">Creat Account</h1>
+      <tr>
+		    <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">First name: </label></td>
+        <td class="tdinput">
+          <input type="text" placeholder="First Name" id="fname" class="inputbar"><br>
+          <p class="message fnamemessage">This Cannot Be Empty</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Last name:</label></td>
+        <td class="tdinput">
+          <input type="text" placeholder="Last Name" id="lname" class="inputbar"><br>
+          <p class="message lnamemessage">This Cannot Be Empty</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Your E-mail:</label></td>
+        <td class="tdinput">
+          <input type="text" placeholder="eg:helloworld@gmail.com" id="email" class="inputbar"><br>
+          <p class="message emailmessage">This Cannot Be Empty</p>
+          <p class="message" id="emailmessage">Input Is Not An Email</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Phone:</label></td>
+        <td class="tdinput">
+          <input type="number" placeholder="(xxx)xxx-xxx" id="phone" class="inputbar"><br>
+          <p class="message phonemessage">This Cannot Be Empty</p>
+          <p class="message" id="phonemessage">Input Is Not An Phone Number</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Zipcode:</label></td>
+        <td class="tdinput">
+          <input type="number" inputmode="numeric" placeholder="xxxxx" id="zipcode" class="inputbar"><br>
+          <p class="message zipcodemessage">This Cannot Be Empty</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Password:</label></td>
+        <td class="tdinput">
+          <input type="password" id="password" class="inputbar"><br>
+          <p class="message passwordmessage">This Cannot Be Empty</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Re-Enter Password:</label></td>
+        <td class="tdinput">
+          <input type="password" id="reenter" class="inputbar"><br>
+          <p class="message reentermessage">Password Must Be Matched</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="tdlabel"><label style="color: rgba(255, 255, 255, 0.73);">Address:</label></td>
+        <td class="tdinput">
+          <textarea type="text" id="address" class="textarea inputbar"></textarea><br>
+          <p class="message addressmessage">This Cannot Be Empty</p>
+        </td>
+      </tr>
+    </table>
+		<br>
+		<br>
+		<button class="button" id="submit" style="display:none">Submit</button>
+		<a href="./Login.html"><button class="button">Back</button></a>
+    <br>
+    <br>
+	</div>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#submit").click(function(){save()});
+      
+      var checked = [false, false, false, false, false, false, false, false];
+      function ifChecked(){
+        for(let i = 0; i < 8; i++){
+          if(checked[i] == false){
+            $("#submit").hide(400);
+            return;
+          }
+        }
+        $("#submit").show(400);
+        return;
+      }
+      function checkIfEmail(mail){ 
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))  {  
+          return (true)  
+        }
+        return (false)    
+      }
+      function checkIfPhone(phone){
+        if(!(phone.length === 10)){
+          return false;
+        }
+        var error = "";
+        var num = phone.replace(/[\(\)\.\-\ ]/g, '');
+        if (num == "") {
+          return(false);
+        } else if (isNaN(parseInt(num))) {
+          return(false);
+        } else if (!(num.length == 10)) {
+          return(false);
+        }
+        return(true);
+      }
+      function checkIfMatch(rePW){
+        if(rePW === password.val()) return true;
+        return false;
+      }
+      var fname = $("#fname");  
+      fname.blur(function(){
+        if(fname.val() === ""){
+          $(".fnamemessage").show();
+          fname.css("border-color","red");
+          checked[0] = false;
+        }else{
+          $(".fnamemessage").hide();
+          fname.css("border-color","white");
+          checked[0] = true;
+        }
+        ifChecked();
+      });
+      var lname = $("#lname");  
+      lname.blur(function(){
+        if(lname.val() === ""){
+          $(".lnamemessage").show();
+          lname.css("border-color","red");
+          checked[1] = false;
+        }else{
+          $(".lnamemessage").hide();
+          lname.css("border-color","white");
+          checked[1] = true;
+        }
+        ifChecked();
+      });
+      var email = $("#email");
+      email.blur(function(){
+        if(email.val() === ""){ 
+          $("#emailmessage").hide();
+          $(".emailmessage").show();
+          email.css("border-color","red");
+          checked[2] = false;
+        }else{
+          if(!checkIfEmail(email.val())){
+            $(".emailmessage").hide();  
+            $("#emailmessage").show();
+            email.css("border-color","red");
+            checked[2] = false;
+          }else{
+            $(".emailmessage").hide();  
+            $("#emailmessage").hide();
+            email.css("border-color","white");
+            checked[2] = true;
+          } 
+        }
+        ifChecked();
+      });
+      var phone = $("#phone");
+      phone.keyup(function(){
+        if(phone.val() === ""){  
+          $("#phonemessage").hide();
+          $(".phonemessage").show();
+          phone.css("border-color","red");
+          checked[3] = false;
+        }else{
+          if(!checkIfPhone(phone.val())){
+            $(".phonemessage").hide(); 
+            $("#phonemessage").show();
+            phone.css("border-color","red");
+            checked[3] = false;
+          }
+          else{
+            $(".phonemessage").hide();  
+            $("#phonemessage").hide();
+            phone.css("border-color","white");
+            checked[3] = true;
+          }
+        }
+        ifChecked(); 
+      });
+      var address = $("#address");  
+      address.keyup(function(){
+        if(address.val() === ""){
+          $(".addressmessage").show();
+          address.css("border-color","red");
+          checked[4] = false;
+        }else{
+          $(".addressmessage").hide();
+          address.css("border-color","white");
+          checked[4] = true;
+        }
+        ifChecked();
+      });
+      var zipcode = $("#zipcode");  
+      zipcode.blur(function(){
+        if(zipcode.val() === ""){
+          $(".zipcodemessage").show();
+          zipcode.css("border-color","red");
+          checked[5] = false;
+        }else{
+          $(".zipcodemessage").hide();
+          zipcode.css("border-color","white");
+          checked[5] = true;
+        }
+        ifChecked();
+      });
+      var password = $("#password");  
+      password.blur(function(){
+        if(password.val() === ""){
+          $(".passwordmessage").show();
+          password.css("border-color","red");
+          checked[6] = false;
+        }else{
+          $(".passwordmessage").hide();
+          password.css("border-color","white");
+          checked[6] = true;
+        }
+        ifChecked();
+      });
+      var reenter = $("#reenter");
+      reenter.keyup(function(){
+        if(reenter.val() === "" || !checkIfMatch(reenter.val())){
+          $(".reentermessage").show();
+          reenter.css("border-color","red");
+          checked[7] = false;
+        }else{
+          $(".reentermessage").hide();
+          reenter.css("border-color","white");
+          checked[7] = true;
+        }
+        ifChecked(); 
+      });
+      function save(){
+        var json = {
+          "firstname": fname.val(),
+          "lastname": lname.val(),
+          "email": email.val(),
+          "phone": phone.val(),
+          "address": address.val(),
+          "zipcode": zipcode.val(),
+          "password": password.val()
+        }
+        var users = JSON.parse(localStorage.getItem("users"));
+        if(users == undefined || users == ''){
+          users = [json];
+        }else{
+          users.push(json);
+        }
+        localStorage.setItem("users", JSON.stringify(users));
+        window.location.href="Login.html";
+      }
+    });
+  </script>
+</body>
+</html>
