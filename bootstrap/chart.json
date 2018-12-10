@@ -1,0 +1,56 @@
+[
+    {"label":"Project1", "data":"5", "meta":[
+        {"label":"Sun", "data":"29 "},
+        {"label":"Mon", "data":"10"},
+        {"label":"Tue", "data":"20"},
+        {"label":"Wed", "data":"10"},
+        {"label":"Thu", "data":"32"},
+        {"label":"Fri", "data":"23"},
+        {"label":"Sat", "data":"51"}
+    ]},
+    {"label":"Project2", "data":"15", "meta":[
+        {"label":"Sun", "data":"35"},
+        {"label":"Mon", "data":"46"},
+        {"label":"Tue", "data":"35"},
+        {"label":"Wed", "data":"11"},
+        {"label":"Thu", "data":"26"},
+        {"label":"Fri", "data":"17"},
+        {"label":"Sat", "data":"46"}
+    ]}, 
+    {"label":"Project3", "data":"9", "meta":[
+        {"label":"Sun", "data":"16"},
+        {"label":"Mon", "data":"20"},
+        {"label":"Tue", "data":"51"},
+        {"label":"Wed", "data":"19"},
+        {"label":"Thu", "data":"29"},
+        {"label":"Fri", "data":"38"},
+        {"label":"Sat", "data":"60"}
+    ]}, 
+    {"label":"Project4", "data":"25", "meta":[
+        {"label":"Sun", "data":"21"},
+        {"label":"Mon", "data":"15"},
+        {"label":"Tue", "data":"44"},
+        {"label":"Wed", "data":"47"},
+        {"label":"Thu", "data":"26"},
+        {"label":"Fri", "data":"35"},
+        {"label":"Sat", "data":"22"}
+    ]}, 
+    {"label":"Project5", "data":"50", "meta":[
+        {"label":"Sun", "data":"13"},
+        {"label":"Mon", "data":"42"},
+        {"label":"Tue", "data":"32"},
+        {"label":"Wed", "data":"3"},
+        {"label":"Thu", "data":"16"},
+        {"label":"Fri", "data":"11"},
+        {"label":"Sat", "data":"17"}
+    ]}, 
+    {"label":"Project6", "data":"17", "meta":[
+        {"label":"Sun", "data":"48"},
+        {"label":"Mon", "data":"50"},
+        {"label":"Tue", "data":"23"},
+        {"label":"Wed", "data":"56"},
+        {"label":"Thu", "data":"45"},
+        {"label":"Fri", "data":"21"},
+        {"label":"Sat", "data":"18"}
+    ]}  
+]
