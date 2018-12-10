@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"/>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      <style type="text/css">
+        body{
+          width: 40%;
+          height: 760px;
+          text-align: center;
+          margin: 0 auto;
+          padding: 0;
+          background: linear-gradient(rgba(18,1,69,0.87), rgba(18,1,69,0.87)), url("background.jpg");
+          background-size: 100%, 100%;
+          background-attachment: fixed; 
+          
+        }
+        .bigBoxClass{
+          border-radius: 25px;
+          box-shadow: 0px 0px 8px 2px rgba(211, 251, 254, 0.93);
+          padding: 0px;
+          margin:0 auto;
+          color: white;
+          text-shadow: 0 0 2px #FAFBDC, 0 0 2px #C2F4F1, 0 0 2px #DCF9FB, 0 0 3px #FBDFDC, 
+            0 0 1px #DCDEFB, 0 0 5px #F8DCFB, 0 0 85px #DCFBE5;
+          width: 100%;
+          height: 100%;
+          font-family: 'Century Gothic', sans-serif;
+          text-align: center;
+          background-color:rgba(2,255,204,0.59);
+        }
+        .boxClass{
+          border-radius: 25px;
+          box-shadow: 0px 0px 8px 2px rgba(211, 251, 254, 0.93);
+          padding: 0px;
+          margin:0 auto;
+          color: white;
+          text-shadow: 0 0 2px #FAFBDC, 0 0 2px #C2F4F1, 0 0 2px #DCF9FB, 0 0 3px #FBDFDC, 
+            0 0 1px #DCDEFB, 0 0 5px #F8DCFB, 0 0 85px #DCFBE5;
+          width: 100%;
+          height: 100%;
+          font-family: 'Century Gothic', sans-serif;
+          text-align: center;
+          background-color:rgba(2,255,204,0.59);
+        }
+        #box{
+          text-align:center;
+          height: auto;
+          width: 100%;
+          border: 1.5px solid rgba(70,210,255,0.19);
+          margin: auto;
+          margin-bottom: 30px;
+          margin-top: 30px;
+          box-shadow: 0px 0px 8px 2px rgba(211, 251, 254, 0.93);
+        }
+        #editEmployeeBox{
+          display: none;
+          margin: auto;
+          width:100%;
+          height: auto;
+          border: 1.5px solid rgba(70,210,255,0.19);
+          margin-bottom: 30px;
+        }
+        #addEmployeeBox{
+          display: none;
+          text-align:center;
+          height: auto;
+          width: 100%;
+          border: 1.5px solid rgba(70,210,255,0.19);
+          margin-bottom: 30px;
+        }
+        #editStudentBox{
+          display: none;
+          margin: auto;
+          width:100%;
+          height: auto;
+          border: 1.5px solid rgba(70,210,255,0.19);
+          margin-bottom: 30px;
+        }
+        #addStudentBox{
+          display: none;
+          text-align:center;
+          height: auto;
+          width: 100%;
+          border: 1.5px solid rgba(70,210,255,0.19);
+          margin-bottom: 30px;
+        }
+        .inputbar{
+          border-radius: 6px;
+          box-shadow: 0px 0px 8px 4px rgba(211, 251, 254, 0.93);
+          text-shadow: 0 0 5px #FAF89F, 0 0 10px #FAF89F, 0 0 2px #0D2752, 0 0 6px #0D2752, 0 0 4px #D3E3FE, 0 0 55px #ff0080, 0 0 75px #FAF89F;
+          height: 25px;
+          width: 60%;
+          font-size:16px;
+          background-color: rgba(0, 0, 0, 0.39);
+          border-color:rgba(180,180,180,0.70);
+          color:white;
+        }
+        
+        .inputbar:hover{
+          box-shadow: 0px 0px 8px 2px rgba(211, 251, 254, 0.93);
+          
+        }
+
+        .inputbar:focus{
+          text-shadow: 0 0 5px #AAEAFB, 0 0 10px #AAEAFB, 0 0 2px #0D2752, 0 0 6px #AAEAFB, 0 0 4px #F6FBAA, 0 0 55px #ff0080, 0 0 75px #AAFBBB;
+          color:rgba(31, 31, 28, 0.53);
+        }
+        .inputbar::placeholder{
+          color:rgba(206, 170, 83, 0.43);
+        }
+        .button {         
+          text-shadow: 0 0 5px #FBD8F6, 0 0 10px #EDD8FB, 0 0 2px #FBD8F6, 0 0 6px #FBF2D8, 0 0 4px #FBFBD8, 0 0 55px #FBF2D8, 0 0 75px #FBFBD8;
+          outline: none;
+          margin: 1px;
+          background-color:rgba(255, 255, 255, 0.93);
+          border: none;
+          color: black;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .button:hover{
+          text-shadow: 0 0 5px #AAEAFB, 0 0 10px #AAEAFB, 0 0 2px #0D2752, 0 0 6px #AAEAFB, 0 0 4px #F6FBAA, 0 0 55px #ff0080, 0 0 75px #AAFBBB;
+          background-color: rgba(100, 100, 100, 0.59);
+          box-shadow: 0px 0px 18px 6px rgba(211, 251, 254, 0.93);
+          color:white;
+        }
+        .submitButton {
+          outline: none;
+          font-size:10vw;
+          border-radius: 13px;
+          background-color: rgba(59, 17, 88, 0.43);
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          text-shadow: 0 0 5px #AAEAFB, 0 0 10px #AAEAFB, 0 0 2px #0D2752, 0 0 6px #AAEAFB, 0 0 4px #F6FBAA, 0 0 55px #ff0080, 0 0 75px #AAFBBB;
+          box-shadow: 0px 0px 18px 6px rgba(211, 251, 254, 0.93);
+          display: inline-block;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 8px 25px;
+          margin-top: 40px;
+          margin-bottom: 30px;
+          cursor: pointer;
+        }
+        .submitButton:hover{
+          border-radius: 15px;
+          background-color: rgba(0, 0, 0, 0.19);
+          box-shadow:0px 0px 3px 4px grey;
+          color:white;
+        }
+        .addButton {
+          outline: none;
+          font-size:0.9vw;
+          border-radius: 13px;
+          background-color: rgba(59, 17, 88, 0.43);
+          border: none;
+          color: white;
+          padding: 8px 12px;
+          text-align: center;
+          text-decoration: none;
+          text-shadow: 0 0 5px #AAEAFB, 0 0 10px #AAEAFB, 0 0 2px #0D2752, 0 0 6px #AAEAFB, 0 0 4px #F6FBAA, 0 0 55px #ff0080, 0 0 75px #AAFBBB;
+          box-shadow: 0px 0px 5px 3px rgba(211, 251, 254, 0.93);
+          display: inline-block;
+          font-weight: 600;
+          margin: 8px 25px;
+          margin-top: 20px;
+          margin-bottom: 30px;
+          cursor: pointer;
+        }
+        .addButton:hover{
+          border-radius: 15px;
+          background-color: rgba(0, 0, 0, 0.19);
+          box-shadow:0px 0px 3px 4px grey;
+          color:white;
+        }
+      </style>
+  </head>
+  <body>
+    <div id="box" class="bigBoxClass">
+      <button class="addButton" onclick="addEmployee()">Add Employee</button>
+      <button class="addButton" onclick="addStudent()">Add Student</button>
+      <div id="margin"></div>
+    </div>
+    <div id="editEmployeeBox" class="boxClass">
+      <h3>Edit Employees</h3>
+      <label class="inputlabel" style="padding-bottom: 10px;">First Name: &nbsp&nbsp</label>
+      <input type="text" class="inputbar" id="employeeEFN">
+      <br>
+      <br>
+      <br>
+      <br>
+      <label class="inputlabel" style="padding-bottom: 10px;">Last Name: &nbsp&nbsp</label>
+      <input type="text" class="inputbar" id="employeeELN">
+      <button class="submitButton" onclick="submitEditEmployee()">Submit</button>
+    </div>
+    <div id="addEmployeeBox" class="boxClass">
+      <h3>Add Employee</h3>
+      <label class="inputlabel" style="padding-bottom: 10px;">First Name: &nbsp&nbsp</label>
+      <input type="text" class="inputbar"  id="employeeAFN">
+      <br>
+      <br>
+      <br>
+      <br>
+      <label class="inputlabel" style="padding-bottom: 10px;">Last Name: &nbsp&nbsp</label>
+      <input type="text" class="inputbar" id="employeeALN">
+      <button class="submitButton" onclick="submitAddEmployee()"> Submit</button>
+    </div>
+    <div id="editStudentBox" class="boxClass">
+      <table align="center">
+        <h3>Edit Students</h3>
+        <br>
+        <tr>
+          <td width="18%"><label>First Name:</label>
+          <td width="82%"><input type="text" class="inputbar" id="studentEFN"><br><br></td>
+          <br>
+        </tr>
+        <tr>
+          <td><label>Last name:</label></td>
+          <td><input type="text" class="inputbar" id="studentELN"><br><br></td>
+        </tr>
+        <tr>
+          <td><label>Phone:</label></td>
+          <td><input type="text" class="inputbar" id="studentEPH"><br><br></td>
+        </tr>
+        <tr>
+          <td><label>E-mail:</label></td>
+          <td><input type="text" class="inputbar" id="studentEEM"><br><br></td>
+        </tr>
+          <td><label>Status:</label></td>
+          <td><select class="inputbar" style="font-size: 15px;" id="studentEST">
+            <option value="active">active</option>
+            <option value="inactive">inactive</option>
+          </select>
+          </td>
+      </table>
+      <button class="submitButton" onclick="submitEditStudent()">Submit</button>
+        
+    </div>
+    <div id="addStudentBox" class="boxClass">
+      <table align="center">
+        <h3>Add Student</h3>
+        <br>
+        <tr>
+          <td width="18%"><label>First Name:</label>
+          <td width="82%"><input type="text" class="inputbar" id="studentAFN"><br><br></td>
+          <br>
+        </tr>
+        <tr>
+          <td><label>Last name:</label></td>
+          <td><input type="text" class="inputbar" id="studentALN"><br><br></td>
+        </tr>
+        <tr>
+          <td><label>Phone:</label></td>
+          <td><input type="text" class="inputbar" id="studentAPH"><br><br></td>
+        </tr>
+        <tr>
+          <td><label>E-mail:</label></td>
+          <td><input type="text" class="inputbar" id="studentAEM"><br><br></td>
+        </tr>
+        <tr>
+          <td><label>Status:</label></td>
+          <td><select class="inputbar" style="font-size: 15px;" id="studentAST">
+            <option value="active">active</option>
+            <option value="inactive">inactive</option>
+          </select>
+          </td>
+        </tr>
+      </table>
+      <button class="submitButton" onclick="submitAddStudent()">Submit</button>
+      
+    </div>
+    <script type="text/javascript">
+      var json = [
+        {
+          "name":"employees",
+          "employees":[
+            {"firstName":"John", "lastName":"Doe"}, 
+            {"firstName":"Anna", "lastName":"Smith"},
+            {"firstName":"Peter", "lastName":"Jones"}
+          ]
+        }
+      ,
+        {
+          "name":"students",
+          "students":[
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+            {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+            {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+            {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}
+          ]
+        }
+      ];
+      var div = $("box");
+      var currentIndex;
+      createEmployeeTable();
+      createStudentsTable();
+      var table;
+      function createEmployeeTable(){
+        var table = $("<table>");
+        var row = $("<tr>");
+        var employeesArr = ["Firstname", "Lastname", "Edit", "Delete"];
+        for(let i = 0; i < employeesArr.length; i++){
+          var header = $("<th>");
+          header.html(employeesArr[i]);
+          row.append(header);
+        }
+        table.append(row);
+        table.css({"text-align":"center", "margin-bottom":"30px", "border":"2px solid", "border-collapse":"collapse"});
+        table.attr("id", "employeeTable");
+        div.append(table);
+        for(let i = 0; i < json[0]["employees"].length; i++){
+          addEmployeeRow(json[0]["employees"][i], i);
+        }
+      }
+      function createStudentsTable(){
+        var table = $("<table>");
+        var row = $("<tr>");
+        var studentsArr = ["Firstname", "Lastname", "Phone", "E-mail", "Status", "Edit", "Delete"];
+        for(let i = 0; i < studentsArr.length; i++){
+          var header = $("<th>");
+          header.html(studentsArr[i]);
+          row.append(header);
+        }
+        table.append(row);
+        table.css({"text-align":"center", "margin-bottom":"30px", "border":"2px solid", "border-collapse":"collapse"});
+        table.attr("id", "studentTable");
+        div.append(table);
+        for(let i = 0; i < json[1]["students"].length; i++){
+          addStudentRow(json[1]["students"][i], i);
+        }
+      }
+      //<i class="fas fa-circle"></i>
+      function addEmployeeRow(obj, index){
+        var row = $("<tr>");
+        for(var item in obj){
+          var cell = $("<td>");
+          if(obj[item] == "active"){
+            var dot = $('<i>');
+            dot.addClass("fas fa-circle");
+            cell.css({"text-align":"center", "color":"white"});
+            cell.append(dot);
+          }else if(obj[item] == "inactive"){
+            var dot = $('<i>');
+            dot.addClass("fas fa-circle");
+            cell.css({"text-align":"center", "color":"black"});
+            cell.append(dot);
+          }else{
+            cell.html(obj[item]);
+          }
+          cell.style.border = "2px solid";
+          row.append(cell);
+        }
+        var editButton = $("<button>");
+        var eIcon = $('<i>');
+        eIcon.addClass("fas fa-user-edit");
+        editButton.append(eIcon);
+        editButton.onclick = function(){editEmployee(index);};
+        editButton.css({"border-radius":"38px"});
+        var deleteButton = $("<button>");
+        var dIcon = $('<i>');
+        dIcon.classList.add("fas", "fa-user-minus");
+        deleteButton.append(dIcon);
+        deleteButton.onclick = function(){deleteEmployee(index);}
+        editButton.classList.add("button");
+        deleteButton.classList.add("button");
+        deleteButton.style.borderRadius="38px";
+        var cell1 = document.createElement("td");
+        cell1.appendChild(editButton);
+        row.append(cell1);
+        var cell2 = document.createElement("td");
+        cell2.appendChild(deleteButton);
+        row.append(cell2);
+        row.style.border = "2px solid";
+        table.append(row);
+    }
+    function addStudentRow(obj, index){
+        var row = document.createElement("tr");
+        for(var item in obj){
+          var cell = document.createElement("td");
+          if(obj[item] == "active"){
+            var dot = document.createElement('i');
+            dot.classList.add("fas", "fa-circle");
+            cell.style.textAlign = "center";
+            dot.style.color = "white";
+            cell.appendChild(dot);
+          }else if(obj[item] == "inactive"){
+            var dot = document.createElement('i');
+            dot.classList.add("fas", "fa-circle");
+            dot.style.color = "black";
+            cell.style.textAlign = "center";
+            cell.appendChild(dot);
+          }else{
+            cell.textContent = obj[item];
+          }
+          cell.style.border = "2px solid";
+          row.append(cell);
+        }
+        var editButton = document.createElement("button");
+        var eIcon = document.createElement('i');
+        eIcon.classList.add("fas", "fa-user-edit");
+        editButton.appendChild(eIcon);
+        editButton.onclick = function(){editStudent(index);};
+        editButton.style.borderRadius="38px";
+        var deleteButton = document.createElement("button");
+        var dIcon = document.createElement('i');
+        dIcon.classList.add("fas", "fa-user-minus");
+        deleteButton.append(dIcon);
+        deleteButton.onclick = function(){deleteStudent(index);}
+        editButton.classList.add("button");
+        deleteButton.classList.add("button");
+        deleteButton.style.borderRadius="38px";
+        var cell1 = document.createElement("td");
+        cell1.appendChild(editButton);
+        var cell2 = document.createElement("td");
+        cell2.appendChild(deleteButton);
+        row.append(cell1);
+        row.append(cell2);
+        row.style.border = "2px solid";
+        row.style.padding ="10px";
+        table.append(row);
+    }
+    function editEmployee(index){
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      currentIndex = index;
+      document.getElementById("editEmployeeBox").style.display = "block";
+      console.log(json[0]["employees"][index].firstName);
+      document.getElementById("employeeEFN").value = json[0]["employees"][index].firstName;
+      document.getElementById("employeeELN").value = json[0]["employees"][index].lastName;
+    }
+    function deleteEmployee(index){
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      json[0]["employees"].splice(index, 1);
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+    }
+    function editStudent(index){
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      document.getElementById("editStudentBox").style.display = "block";
+      document.getElementById("studentEFN").value = json[1]["students"][index].firstName;
+      document.getElementById("studentELN").value = json[1]["students"][index].lastName;
+      document.getElementById("studentEEM").value = json[1]["students"][index].email;
+      document.getElementById("studentEPH").value = json[1]["students"][index].phone;
+      document.getElementById("studentEST").value = json[1]["students"][index].status;
+      currentIndex = index;      
+    }
+    function deleteStudent(index){
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      json[1]["students"].splice(index, 1);
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+
+    }
+    function addEmployee() {
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      document.getElementById("addEmployeeBox").style.display = "block";
+    }
+    function addStudent() {      
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      document.getElementById("addStudentBox").style.display = "block";
+    } 
+    function submitAddEmployee(){
+      json[0]["employees"][json[0]["employees"].length] = {"firstName":document.getElementById("employeeAFN").value, 
+      "lastName":document.getElementById("employeeALN").value, 
+      }      
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+    }
+    function submitAddStudent(){
+      json[1]["students"][json[1]["students"].length] = {"firstName":document.getElementById("studentAFN").value, 
+      "lastName":document.getElementById("studentALN").value, 
+      "email":document.getElementById("studentAEM").value,
+      "phone":document.getElementById("studentAPH").value,
+      "status":document.getElementById("studentAST").value}
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+    }
+    function submitEditEmployee(){
+      json[0]["employees"][currentIndex].firstName = document.getElementById("employeeEFN").value;
+      json[0]["employees"][currentIndex].lastName = document.getElementById("employeeELN").value;
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+    }
+    function submitEditStudent(){
+      json[1]["students"][currentIndex].firstName = document.getElementById("studentEFN").value;
+      json[1]["students"][currentIndex].lastName = document.getElementById("studentELN").value;
+      json[1]["students"][currentIndex].email = document.getElementById("studentEEM").value;
+      json[1]["students"][currentIndex].phone = document.getElementById("studentEPH").value;
+      json[1]["students"][currentIndex].status = document.getElementById("studentEST").value;
+      var boxes = document.getElementsByClassName("boxClass");
+      for(let i = 0; i < boxes.length; i++){
+        boxes[i].style.display = "none";
+      }
+      deleteTable();
+      createEmployeeTable();
+      createStudentsTable();
+    }
+    function deleteTable(){
+      console.log("hrer");
+      var table1 = document.getElementById("employeeTable");
+      table1.parentNode.removeChild(table1);
+      var table2 = document.getElementById("studentTable");
+      table2.parentNode.removeChild(table2)
+    }
+    </script>
+  </body>
+</html>
