@@ -1,0 +1,26 @@
+[{
+"name":"projects",
+"projects":[
+    {"projectName":"Project1", "img":"1.jpg", "description":"Web Project1"},
+    {"projectName":"Project2", "img":"2.jpg", "description":"Web Project2"}, 
+    {"projectName":"Project3", "img":"3.jpg", "description":"Web Project3"}, 
+    {"projectName":"Project4", "img":"4.jpg", "description":"Web Project4"}, 
+    {"projectName":"Project5", "img":"5.jpg", "description":"Web Project5"}, 
+    {"projectName":"Project6", "img":"6.jpg", "description":"Web Project6"}  
+]
+},
+{
+"name":"students",
+"students":[
+    {"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+    {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+    {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+	{"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+    {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+    {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"},
+	{"firstName":"John", "lastName":"Doe", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}, 
+    {"firstName":"Anna", "lastName":"Smith", "phone":"9000000000", "email":"test@gmail.com", "status":"inactive"},
+    {"firstName":"Peter", "lastName":"Jones", "phone":"9000000000", "email":"test@gmail.com", "status":"active"}
+]
+}]
+
