@@ -269,6 +269,7 @@
       ]
     }]
     $(document).ready(function(){
+      //chart.js drilldown starts here
       var myArr = new Array();
       $.ajax({url: "drilldown.json", success: function(result){
         for(let i = 0; i < result.length; i++){
@@ -533,6 +534,12 @@
       }
     });
     
+
+
+
+
+
+      //chartist.js chart start here
       var chartjson;
       $.ajax({url: "chart.json", success: function(result){
         chartjson = result;
