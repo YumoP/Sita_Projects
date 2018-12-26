@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="../jquery/js/jquery-3.3.1.js" ></script>
+    <title>Directions Service</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+	var data=[];
+	$.getJSON("map.json",function(result, status,xhr){
+		data = result;
+		//data = JSON.parse(data);
+		//console.log(result);
+	});
+      function initMap() {
+      	var infowindow=[];
+      	var marker=[];
+      	//var uluru={};
+      	var map= new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: data[2]
+        });
+      for(var i =0; i< data.length; i++){
+
+  		 var uluru = data[i];
+  		// console.log(uluru);
+  		 //console.log(data.length);
+        
+		//var marker=[];
+		//var InfoWindow=[];
+
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+            '<div id="bodyContent">'+
+            '<p>lat:'+  data[i].lat + ', lng:'+data[i].lng +'</p>'+
+            '</div>'+
+            '</div>';
+
+         infowindow.push( new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        })
+        );
+
+         marker.push(new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        })
+        );
+         console.log(map);
+         console.log(marker[i]);
+        marker[i].addListener('click', function() {
+          infowindow[i].open(map, marker[i]);
+          
+        });
+    }
+      }
+
+     
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4WMwvo2kztGXbPybscfQD2weUR0dxJgA&callback=initMap">
+    </script>
+  </body>
+</html>
