@@ -1,0 +1,36 @@
+
+<title></title>
+<link rel="stylesheet" href="CSS/signupCSS.css">
+<body>
+    <div class="login-box">
+      <h1><i class="fab fa-paypal nav-logo"></i> Sign Up</h1>
+      <div class="textbox">
+        <i class="far fa-id-card"></i>
+        <input type="text" ng-model="fname" placeholder="First Name">
+      </div>
+
+      <div class="textbox">
+        <i class="far fa-id-card"></i>
+        <input type="text" ng-model="lname" placeholder="Last Name">
+      </div>
+
+      <div class="textbox">
+        <i class="fas fa-at"></i>
+        <input type="text" ng-model="email"placeholder="Email">
+      </div>
+
+      <div class="textbox">
+        <i class="fas fa-lock"></i>
+        <input type="password" ng-model="password" placeholder="Password">
+      </div>
+      
+      <div class="textbox">
+        <i class="fas fa-mobile"></i>
+          <input type="text" ng-model="mobile" placeholder="Mobile Number">
+      </div>
+      
+
+      <input type="button" class="btn" ng-click="registerClick()" value="Submit">
+      <input type="button" class="btn" ng-click="back()" value="Back">
+    </div>
+</body>
