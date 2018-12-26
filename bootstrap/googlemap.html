@@ -1,0 +1,94 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" style="width:80%"></div>
+    <script>
+      function initMap() {
+        var myLatLng = [
+          {"address":"Elizabeth Ave Somerset, NJ 08873", "lat":40.543957, "lng" : -74.534305},
+          {"address":"Pennsylvania", "lat":41.180529, "lng" : -76.132187},
+          {"address":"Pennsylvania", "lat":41.044405, "lng" : -77.217951},
+          {"address":"Pennsylvania", "lat":41.095116, "lng" : -78.570669},
+          {"address":"Pennsylvania", "lat":41.232390, "lng" : -78.532866},
+          {"address":"Pennsylvania", "lat":41.187681, "lng" : -79.704655},
+          {"address":"Ohio", "lat":41.283219, "lng" : -80.690985},
+          {"address":"Ohio", "lat":41.375488, "lng" : -81.237964},
+          {"address":"Ohio", "lat":41.315788, "lng" : -81.586403},
+          {"address":"Ohio", "lat":41.395788, "lng" : -82.089253},
+          {"address":"Ohio", "lat":41.335788, "lng" : -82.380502},
+          {"address":"Ohio", "lat":41.215788, "lng" : -82.812459},
+          {"address":"Ohio", "lat":41.410832, "lng" : -83.134718},
+          {"address":"Ohio", "lat":41.535948, "lng" : -83.983791},
+          {"address":"Ohio", "lat":41.638212, "lng" : -84.676956},
+          {"address":"Indiana", "lat":41.716795, "lng" : -85.499772},
+          {"address":"Indiana", "lat":41.747005, "lng" : -86.134367},
+          {"address":"Indiana", "lat":41.599972, "lng" : -86.756201},
+          {"address":"Indiana", "lat":41.658987, "lng" : -87.253498},
+          {"address":"Will County Illinois", "lat":41.577600, "lng" : -88.047135},
+          {"address":"Illinois", "lat":41.539470, "lng" : -88.389537},
+          {"address":"Illinois", "lat":41.286329, "lng" : -89.109321},
+          {"address":"Illinois", "lat":41.382898, "lng" : -89.882545},
+          {"address":"Iowa", "lat":41.700528, "lng" : -91.123519},
+          {"address":"Iowa", "lat":41.716239, "lng" : -92.224002},
+          {"address":"Iowa", "lat":41.598059, "lng" : -92.981436},
+          {"address":"Iowa", "lat":41.687431, "lng" : -93.428959},
+          {"address":"Iowa", "lat":41.508426, "lng" : -94.065960},
+          {"address":"Iowa", "lat":41.687431, "lng" : -93.428959},
+          {"address":"Iowa", "lat":41.526559, "lng" : -94.857072},
+        ];
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: { lat: myLatLng[7].lat, lng: myLatLng[7].lng }
+        });
+        var markers = [];
+        var infowindows = [];
+        for(let i = 0; i < myLatLng.length; i++){
+          var contentString = 
+              '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">'+ 'I am at ' + myLatLng[i].address+'</h1>'+
+              '</div>'+ 
+              '</div>';
+
+          infowindows.push(new google.maps.InfoWindow({
+            content: contentString
+          }));
+          var markerpos = {lat: myLatLng[i].lat, lng: myLatLng[i].lng};
+
+          markers.push(new google.maps.Marker({
+            position: markerpos,
+            map:map,
+            title: 'Hello World!'
+          }));
+          markers[i].addListener('click', function() {
+            infowindows[i].open(map, markers[i]);
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGs40-qelfyXmw1C9mqVLnhetZggRdLmA&callback=initMap">
+    </script>
+  </body>
+</html>
