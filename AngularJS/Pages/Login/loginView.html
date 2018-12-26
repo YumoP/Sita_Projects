@@ -1,0 +1,41 @@
+
+<script type="text/javascript" src="./loginController.js"></script>
+
+<script src="./JS/JQuery.js"></script>
+<title>Login</title>
+<link rel="stylesheet" href="CSS/loginCSS.css">
+
+
+<body>
+	<div class="box" style="margin:auto">
+		<img src="CSS/img/applelogo.jpg" alt="logo" class="box-image">
+    	<p id="title"style="color: rgba(255, 255, 255, 0.73);">Sign in to Apple Store</p>
+		<form class="login-box" name="myForm">
+  			<input  type="text" placeholder="Apple ID" size="34" name="username" class="inputbar" id="user" ng-model="username" style="border-bottom-width: 0.5px;border-top-right-radius: 9px; border-top-left-radius: 9px;" required/>
+				<p>{{myForm.username.$valid}}</p>
+				<p class="message" id="usermessage"></p>
+  			<input  type="text" placeholder="Password" size="34" name="password" class="inputbar" id="password" ng-model="password" style="border-top-width: 0.5px;border-bottom-right-radius: 9px; border-bottom-left-radius: 9px;" required/><br>
+				<p>{{myForm.password.$pristine}}</p>
+				<br>
+      		<p class="message" id="pwmessage"></p>
+  			<br>
+      		<a href="./ForgotPW.html">Forgot Password</a>
+      		<a href="./Registor.html">Registor</a>
+      		<br>
+      		<br>
+  			<button type="Login" class="loginbutton" ng-click="loginClick()">Login</button>
+		</form>
+	</div>
+  <div id="mask">
+    <div class="loading">
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+      <div class="obj"></div>
+    </div>
+	</div>
+</body>	
