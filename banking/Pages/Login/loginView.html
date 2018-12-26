@@ -1,0 +1,87 @@
+
+    <script type="text/javascript" src="./loginController.js"></script>
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/loginCSS.css">
+
+  <body>
+    <div class="mydiv"></div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><i class="fab fa-paypal nav-logo"></i>PAYPAL</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline my-lg-0 buscar-caja">
+          <input type="text" name="" class="buscar-txt" placeholder="Search..."/>
+          <a class="buscar-btn">
+            <i class="fas fa-search"></i>
+          </a>
+        </form>
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" ng-show="!myVar">
+            <a class="nav-link" ng-click="booleanVal = !booleanVal" ><i class="fas fa-sign-in-alt"></i> Login<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" ng-show="myVar">
+            <a class="nav-link" ng-click="signupClick()" ><i class="fas fa-user-tie"></i> Hi! {{currentName}}</a>
+          </li>
+          <li class="nav-item" ng-show="myVar">
+            <a class="nav-link" ng-click="userlistClick()" ><i class="fas fa-users"></i> User List</a>
+          </li>
+          <li class="nav-item" ng-show="!myVar">
+            <a class="nav-link" ng-click="signupClick()"><i class="fas fa-user-plus"></i> Sign Up</a>
+          </li>
+          <li class="nav-item" ng-show="myVar">
+            <a class="nav-link" ng-click="changePasswordClick()" ><i class="fas fa-unlock-alt"></i> Change Password</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ng-click="contactClick()"><i class="fas fa-phone"></i> Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="split left" ng-mouseenter="addClassL()" 
+          ng-mouseleave="removeClassL()">
+          
+          <h1>Personal</h1>
+          <a class="button" ng-click="signupClick()"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="split right" ng-mouseenter="addClassR()" ng-mouseleave="removeClassR()">
+          <h1 >Business</h1>
+          <a class="button" ng-click="signupClick()"><i class="fas fa-plus"></i></a>
+        </div>
+    </div>
+      
+    <h2 class="title" style="color:black; position:relative; margin: 30px auto; text-align: center">
+      Shop, send, and return easily this holiday.
+    </h2>
+    
+    <div id="mask" ng-show="loadingIcon">
+      <div class="loading">
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+      </div>
+    </div>
+
+    <div class="login-box" ng-class="booleanVal ? 'showed' : ''">
+      <div class="hide-login-btn" ng-click="booleanVal = !booleanVal"><i class="fas fa-caret-left"></i></div>
+      <form class="login-form">
+        <i class="fab fa-cc-paypal login-logo"></i>
+        <input class="txtb" type="text" name="" placeholder="Username" ng-model="usernameInput">
+        <input class="txtb" type="password" name="" placeholder="Password" ng-model="passwordInput">
+        <input class="login-btn" type="submit" name="" value="Login" ng-click="loginClick()"><br>
+        <a class="fg-pw">Forgot Password?</a>
+      </form>
+    </div>
+
+  </body>
