@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"/>
+  <script src="./JS/JQuery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+  <script src="node_modules/underscore/underscore.js"></script>
+</head>
+
+<body>
+ 	<div id="charts" align="center" style="width:80%; height:500px; margin: auto;">
+		<div align="left" id="chartLinks" style="margin: 20px;margin-left:40px">
+	   	  <a style="cursor: pointer;" id="ylink"> Years </a>
+		  <a style="cursor: pointer; display: none" id="qlink">&nbsp > &nbsp Quarters</a>
+		  <a style="cursor: pointer; display: none" id="mlink">&nbsp > &nbsp Months</a>
+		</div>
+    	<canvas id="chartJs" width="400" height="400"></canvas>
+  	</div>
+
+</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var myData;
+		var myChart;
+		var label;
+		var income;
+		$.ajax({url: "drilldown.json", success: function(result){
+			myData = result;
+			var yeardata = _.chain(myData).groupBy("year").map(function(value, key){
+				var sum = _.reduce(value, function(prev, curr){
+					//console.log(prev, curr['income']);
+					return prev + curr['income'];
+				}, 0);
+				//console.log({'year': key, 'total': sum});
+				return {'year': key, 'total': sum}
+			});
+			label = _.pluck(yeardata._wrapped, "year");
+			income = _.pluck(yeardata._wrapped, "total");
+			//console.log(income);
+			//addJson(result);
+			var ctx = document.getElementById("chartJs").getContext('2d');
+			myChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: label,
+			        datasets: [{
+			            label: '# of Income',
+			            data: income,
+			            backgroundColor: [
+			                'rgba(255, 99, 132, 0.2)',
+			                'rgba(54, 162, 235, 0.2)',
+			                'rgba(255, 206, 86, 0.2)'
+			            ],
+			            borderColor: [
+			                'rgba(255,99,132,1)',
+			                'rgba(54, 162, 235, 1)',
+			                'rgba(255, 206, 86, 1)'
+			            ],
+			            borderWidth: 1
+			        }]
+			    },
+	            options: {
+	                scales: {
+	                    yAxes: [{
+	                        display: true,
+	                        ticks: {
+	                            suggestedMin: 20000,
+	                            suggestedMax: 6000,
+                          		beginAtZero:true
+							}
+	                    }]
+	                },
+	                onClick: handleClick
+	            }
+			});
+		}});
+		var month_data;
+		var month_label;
+		var month_income;
+		var q_label;
+		var q_income;
+		$("#ylink").click(function(){
+			update(label, income, handleClick);
+			$("#qlink").hide();
+			$("#mlink").hide();
+		});
+		$("#qlink").click(function(){
+			update(q_label, q_income, handleClick2);
+			$("#mlink").hide();
+		});
+		function update(label, data, click){
+		    myChart.config.data.labels = label;
+		    myChart.config.data.datasets[0].data = data;
+		    myChart.options.onClick = click;
+		    myChart.update();
+		}
+		function handleClick(event){
+			var activeElement = myChart.getElementAtEvent(event);
+    		if (!activeElement[0]) return;
+    		$("#qlink").show();
+    			var label = activeElement[0]._model.label;
+    			month_data = _.where(myData, { 'year': label });
+			    month_label = _.pluck(month_data, 'month');
+			    month_income = _.pluck(month_data, 'income');
+			    console.log(month_income);
+
+			    var q1 = 0, q2 = 0, q3 = 0, q4 = 0;
+			    q_income = [];
+			    q_label = ["q1", 'q2', 'q3', 'q4']
+			    for (i = 0; i < month_label.length; i++) {
+			        if (month_label[i] == 'jan' || month_label[i] == 'feb' || month_label[i] == 'mar') {
+			            q1 += month_income[i];
+			        } else if (month_label[i] == 'apr' || month_label[i] == 'may' || month_label[i] == 'jun') {
+			            q2 += month_income[i];
+			        } else if (month_label[i] == 'jul' || month_label[i] == 'aug' || month_label[i] == 'sep') {
+			            q3 += month_income[i];
+			        } else if (month_label[i] == 'oct' || month_label[i] == 'nov' || month_label[i] == 'dec') {
+			            q4 += month_income[i];
+			        }
+			    }
+
+			    q_income.push(q1);
+			    q_income.push(q2);
+			    q_income.push(q3);
+			    q_income.push(q4);
+			    update(q_label, q_income, handleClick2);
+			}
+
+			function handleClick2(event){
+				var activeElement = myChart.getElementAtEvent(event);
+				if (!activeElement[0]) return;
+
+    			$("#mlink").show();
+				var label = activeElement[0]._model.label;
+				var q_month_label = [];
+				var q_month_data = [0,0,0];
+				switch(label){
+					case('q1'): 
+						q_month_label = ['jan','feb','mar'];
+						for (i = 0; i < month_label.length; i++) {
+					        if (month_label[i] == 'jan') {
+					            q_month_data[0] += month_income[i];
+							}if (month_label[i] == 'feb') {
+					            q_month_data[1] += month_income[i];
+							}if (month_label[i] == 'mar') {
+					            q_month_data[2] += month_income[i];
+							}
+						}
+						break;
+					case('q2'): 
+						q_month_label = ['apr','may','jun'];
+						for (i = 0; i < month_label.length; i++) {
+					        if (month_label[i] == 'apr') {
+					            q_month_data[0] += month_income[i];
+							}if (month_label[i] == 'may') {
+					            q_month_data[1] += month_income[i];
+							}if (month_label[i] == 'jun') {
+					            q_month_data[2] += month_income[i];
+							}
+						}
+						break;
+					case('q3'): 
+						q_month_label = ['jul','aug','sep'];
+						for (i = 0; i < month_label.length; i++) {
+					        if (month_label[i] == 'jul') {
+					            q_month_data[0] += month_income[i];
+							}if (month_label[i] == 'aug') {
+					            q_month_data[1] += month_income[i];
+							}if (month_label[i] == 'sep') {
+					            q_month_data[2] += month_income[i];
+							}
+						}
+						break;
+					case('q4'): 
+						q_month_label = ['oct','nov','dec'];
+						for (i = 0; i < month_label.length; i++) {
+					        if (month_label[i] == 'ovt') {
+					            q_month_data[0] += month_income[i];
+							}if (month_label[i] == 'nov') {
+					            q_month_data[1] += month_income[i];
+							}if (month_label[i] == 'dec') {
+					            q_month_data[2] += month_income[i];
+							}
+						}
+						break;
+				}
+				console.log(q_month_label);
+				console.log(q_month_data);
+				update(q_month_label,q_month_data,onclick);
+
+			}
+		});
+</script>
+
+</html>
