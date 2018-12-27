@@ -25,4 +25,8 @@ myapp.config(($routeProvider)=>{
 		templateUrl :"Pages/UserList/userlistView.html",
 		controller: "userlistController"
 	})
-})
+});
+
+// document.addEventListener('keydown', function(event){
+// 	console.log(event.which);
+// });
