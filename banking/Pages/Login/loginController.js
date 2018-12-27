@@ -16,7 +16,7 @@ myapp.controller('loginController', function($scope, $location, $http){
 		}
 	 }
 	$(document).on('scroll', function(){
-		$(".subtitle1").css({"letter-spacing": window.scrollY/6.2 + "px", "opacity": 1 - window.scrollY * 0.22 / 100, 
+		$(".subtitle1").css({"letter-spacing": window.scrollY/8.2 + "px", "opacity": 1 - window.scrollY * 0.22 / 100, 
 		"font-size": 60 - window.scrollY/7.5 + "px", "height": 72 - window.scrollY*0.11 + "px"});
 	});
 	$scope.onloadFun = function() {
