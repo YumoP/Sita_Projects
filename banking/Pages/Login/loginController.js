@@ -3,6 +3,49 @@ var password = "shiva";
 var currentUser = new String();
 var currentName = new String();
 myapp.controller('loginController', function($scope, $location, $http){
+
+
+
+	window.onkeydown = function(e) {
+		var key = e.keyCode ? e.keyCode : e.which;
+		if (key == 13 && $scope.booleanVal==true) {
+			$scope.loginClick();
+			$scope.$apply();
+		}else{
+			//console.log(key + " " + $scope.booleanVal);
+		}
+	 }
+	$(document).on('scroll', function(){
+		$(".subtitle1").css({"letter-spacing": window.scrollY/6.2 + "px", "opacity": 1 - window.scrollY * 0.22 / 100, 
+		"font-size": 60 - window.scrollY/7.5 + "px", "height": 72 - window.scrollY*0.11 + "px"});
+	});
+	$scope.onloadFun = function() {
+		var date = new Date();
+		var hour = date.getHours();
+		if(hour >= 0 && hour < 12){
+			$scope.time = "Morning";
+		}
+		if(hour >= 12 && hour < 18){
+			$scope.time = "Afternoon";
+		}
+		if(hour >= 18 && hour < 24){
+			$scope.time = "Evening";
+		}
+		if(localStorage.getItem("logged") == "true"){
+			//console.log("1 " + localStorage.getItem("logged"));
+			$scope.getTrans();
+			$scope.currentName = localStorage.getItem("name");
+			$scope.currentEmail = localStorage.getItem("email");
+			$scope.currentPhone = localStorage.getItem("phone");
+			$scope.currrentBalance = localStorage.getItem("balance");
+			$scope.myVar = true;
+			document.querySelector(".buscar-caja").style.left="40%";
+		}else{
+			document.querySelector(".buscar-caja").style.left="50%";
+			//console.log("2 " + localStorage.getItem("logged"));
+			$scope.myVar = false;
+		}
+    }
 	$scope.loadingIcon = false;
 	var contain = angular.element(document.querySelector(".container"));
 	$scope.addClassL = function(){
@@ -29,19 +72,43 @@ myapp.controller('loginController', function($scope, $location, $http){
 	$scope.contactClick = function(){
 		$location.path('contact');
 	}
+	$scope.profileClick = function(){
+		document.querySelector(".profileContainer").style.display="block";
+	}
+	$scope.profileClose = function(){
+		document.querySelector(".profileContainer").style.display="none";
+	}
+	$scope.signoutClick = function(){
+		localStorage.setItem("logged", "false");
+		localStorage.setItem("name", null);
+		$scope.myVar = false;
+		$("#mytab").bootstrapTable('destroy');
+		$location.path('login');
+		document.querySelector(".buscar-caja").style.left="50%";
+	}
 	$scope.booleanVal = false;
-	$scope.myVar = false;
-	$scope.loginClick = function(){
+	$scope.loginClick = function(type){
+		if($scope.loginForm.$valid){
+        
 		$scope.loadingIcon = true;
 		$http({
 			method : "GET",
 			url : "http://helpdesk.sitacorp.com:8080/registration/userLogin?username=" + $scope.usernameInput + "&password=" + $scope.passwordInput
 		}).then(function mySuccess(response) {
 			if(response.data.status === "success"){
-				$scope.myVar = !$scope.myVar;
-				$scope.currentName = response.data.data[0].firstname + " " + response.data.data[0].lastname;
+				$scope.myVar = true;
+				localStorage.setItem("logged", "true");
+				console.log(response.data.data[0]);
+				localStorage.setItem("name", response.data.data[0].firstname + " " + response.data.data[0].lastname);
+				localStorage.setItem("email", response.data.data[0].email);
+				localStorage.setItem("phone", response.data.data[0].phone);
+				$scope.currentName = localStorage.getItem("name");
+				$scope.currentEmail = localStorage.getItem("email");
+				$scope.currentPhone = localStorage.getItem("phone");
 				$scope.booleanVal = false;
-				setTimeout(function(){
+				document.querySelector(".buscar-caja").style.left="40%";
+				window.setTimeout(function(){
+					$scope.getTrans();
 					$scope.loadingIcon = false; 
 					$scope.$apply()
 				}, 1000);
@@ -49,7 +116,115 @@ myapp.controller('loginController', function($scope, $location, $http){
 				alert("Failed to log in, please try again");
 				$scope.loadingIcon = false; 
 			}
-			console.log(currentName);
+		});	
+		}else{
+			alert("not valid");
+		}
+	}
+	$scope.getTrans = function(){
+		$http({
+			method : "GET",
+			url : "http://helpdesk.sitacorp.com:8080/registration/getpayment"
+		}).then(function mySuccess(response) {
+			var data = response.data;
+			if(response.data.status === "success"){
+				var mydata = response.data.data;
+				localStorage.setItem("balance", mydata[mydata.length-1].totalamount);
+				var headerdata = [{
+					field: 'paymentno',
+					title: 'paymentno',
+					align: 'left',
+					valign: 'top',
+					sortable: true,
+					formatter:mobileFormat
+				}, {
+					field: 'totalamount',
+					title: 'totalamount',
+					align: 'left',
+					valign: 'top',
+					sortable: true
+				}, {
+					field: 'date',
+					title: 'date',
+					align: 'left',
+					valign: 'top',
+					sortable: true
+				}, {
+					field: 'paymentamount',
+					title: 'paymentamount',
+					align: 'left',
+					valign: 'top',
+					sortable: true
+				}, {
+					field: 'marchant',
+					title: 'marchant',
+					align: 'left',
+					valign: 'top',
+					sortable: true
+				}
+			]
+				$scope.currrentBalance = localStorage.getItem("balance");
+				var tableOptions = {
+					data: mydata,
+					columns:headerdata,
+					rowStyle: function (row, index) {
+						return { classes: 'none' };
+					},
+					cache: false,
+					//height: 400,
+					striped: true,
+					pagination: true,
+					pageSize: 5,
+					//pageList: [5, 10, 25, 50, 100, 200],
+					pageList: "[5, 10, 25, 50, 100, ALL]",
+					search: true,
+					flat:true,
+					showColumns: true,
+					showRefresh: false,
+					minimumCountColumns: 2,
+					clickToSelect: false,
+					showToggle: true,
+					maintainSelected: true,
+					
+					//showExport: true,
+					//detailView: true,
+					//detailFormatter: detailFormatter,
+					showPaginationSwitch: true,
+					mobileResponsive:true,
+					smartDisplay:true
+					/* columns:  */
+				};
+				
+				$("#myTab").bootstrapTable(tableOptions);
+				
+				function mobileFormat(input,val) {
+					return '<p>'+input+'</p>'	
+							+'<div class="payment-info">'
+							+'		<a class="payment-title">$ '+val.paymentamount
+							+'          <span class="label label-warning pull-right">'+val.date+'</span>'
+							+'		</a>'
+							+'	    <span class="payment-description">'+val.marchant
+							+'		</span>'
+							+'</div>'		
+				}
+			}else{
+				console.log("failed")
+			}
 		});
 	}
+	
+
+	var checkbox = document.querySelector("#nightMode_Check");
+
+	checkbox.addEventListener( 'change', function() {
+		var body = document.getElementsByTagName("BODY")[0];
+		if(this.checked) {
+			body.style.setProperty("--background-color", "#222");
+			body.style.setProperty("--text-color", "#888");
+		} else {
+			body.style.setProperty("--background-color", "white");
+			body.style.setProperty("--text-color", "black");
+		}
+	})
+
 });
