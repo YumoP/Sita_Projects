@@ -29,13 +29,13 @@
   overflow: visible;
 }
 
-.contact-form-text{
+.contact-form-text{    
+  border: 1.5px solid rgba(1, 1, 250, 0.658);
   display: block;
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
   margin: 16px 0;
-  border: 0;
   background: rgba(13, 133, 189, 0.404);
   padding: 20px 40px;
   outline: none;
@@ -54,8 +54,8 @@ textarea.contact-form-text{
   height: 120px;
 }
 .contact-form-btn{
-  float: right; 
-  border: 0;
+  border: 1.5px solid rgba(1, 1, 250, 0.658);
+  float: right;
   background: #0a4580;
   color: #fff;
   padding: 12px 50px;
