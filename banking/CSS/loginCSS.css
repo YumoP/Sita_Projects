@@ -137,7 +137,10 @@ body{
   z-index:1000000;
   padding: 6px;
   margin-bottom: 5px;
-  background: linear-gradient(rgba(0, 3, 19, 0.863), rgba(0, 0, 0, 0.329), rgba(255, 255, 255, 0.11))  !important;
+  background: linear-gradient(rgba(0, 3, 19, 0.863), rgba(0, 0, 0, 0.568),
+    rgba(0, 0, 0, 0.384), rgba(75, 75, 75, 0.507))  !important;
+  box-shadow: 0 0 12px  var(--text-color), 0 0 21px #ffffff4f, 0 0 2px #55555557, 0 0 3px rgba(78, 77, 77, 0.37), 
+  0 0 11px var(--text-color), 0 0 15px  var(--text-color), 0 0 68px #e9e9e986;
 }
 .navbar-brand{
   font-size: 25px;
@@ -306,6 +309,7 @@ h1 {
 }
 
 .container {
+  padding:0;
   display: block;
   position: relative;
   width: 100%;
@@ -319,7 +323,8 @@ h1 {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background:url('./img/paypal1.png') center center no-repeat; 
+  background:url('./img/paypal1.jpg') center no-repeat; 
+  /* background-image: url(https://www.paypalobjects.com/digitalassets/c/NA/banner_ad/2018/us/imgUS_NA07566_CON_Xoom_Acq_Dec_1203_1600x530.png); */
   background-size: cover;
 }
 .split {
@@ -667,7 +672,10 @@ p{
   position: relative;
   float: right;
   right:2%;
-  color:white;
+  color:rgb(0, 195, 255);
+}
+.close .fas:hover {
+  color:rgba(0, 141, 160, 0.671);
 }
 .Profile-card{
   position: inherit;
