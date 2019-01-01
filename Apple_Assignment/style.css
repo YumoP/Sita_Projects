@@ -1,0 +1,234 @@
+@font-face {
+    font-family: myriad-set-pro;
+    src: url(myriad-set-pro_text.TTF);
+}
+/* Chrome, Safari */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+::-webkit-scrollbar-track-piece  {
+    background-color: rgb(136, 136, 136);
+}
+::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background-color: rgb(31, 31, 31);
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: myriad-set-pro;
+    background: rgba(211, 210, 210, 0.801) !important;
+}
+header {
+    position: absolute;
+    top:0;
+    left:0;
+    padding: 0;
+    background: black;
+    width: 100%;
+    box-sizing: border-box;
+}
+header .logo{
+    color: rgba(255, 255, 255, 0.952);
+    height: 50px;
+    line-height: 50px;
+    font-size:24px;
+    /* text-align: center; */
+    float: left;
+}
+header nav{
+    text-align: center;
+}
+header nav ul{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    display: flex;   
+    padding: 0;
+}
+header nav ul li{
+    text-align: left;
+    list-style: none;
+    position: relative;
+}
+header nav ul li ul {
+    position: absolute;
+    left:0;
+    background: rgb(0, 0, 0);
+    opacity: 0;
+}
+header nav ul li.active ul {
+    display: block;
+}
+header nav ul li ul li a{
+    padding-left: 20px;
+    color: rgba(255, 255, 255, 0.438)
+}
+
+header nav ul li a{
+    font-size: 18px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    text-decoration: none;
+    display: block; 
+}
+header nav ul li a:hover{
+    color: rgba(255, 255, 255, 0.521);
+    text-decoration: none;
+}
+.sign {
+    position: absolute;
+    right: 26px;
+    top: 12.5px;
+}
+.expand{
+    display :none;
+    color: rgba(255, 255, 255, 0.952);
+    height:12px;
+    width: 12px;
+    display: none;
+}
+.expand .fas{
+    font-size:12px;
+}
+.shrink{
+    display :none;
+    color: rgba(255, 255, 255, 0.952);
+    height:12px;
+    width: 12px;
+    display: none;
+}
+.shrink .fas{
+    font-size:12px;
+}
+.logom{
+    display :none;
+    color: rgba(255, 255, 255, 0.952);
+    height: 50px;
+    line-height: 50px;
+    font-size:17px;
+}
+.logom .fab{
+    font-size:24px;
+}
+.menu-toggle{
+    color: #fff;
+    float: left;
+    line-height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    transition: 1s;
+}
+.box{
+    color:transparent;
+    width: 5px;
+    line-height: 50px;
+    background: blue;
+    display: none;
+}
+.bell {
+    display:none;
+    position: absolute;
+    color:white;
+    top:5.5px;
+    right: 26px;
+    font-size: 25px;
+}
+.search {
+    display:none;
+    position: absolute;
+    color:white;
+    top:5.5px;
+    right: 65px;
+    font-size: 25px;
+}
+@media (max-width: 786px){
+    header{
+        padding: 0 26px;  
+        text-align: center;
+    }
+    header nav {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: rgb(0, 0, 0);
+        top: 50px;
+        left: -100%;
+        transition:0.5s;
+    }
+    header nav.active{
+        left:0;
+    }
+    header nav ul{
+        display: block;
+    }
+    header nav ul li{
+        width:100% !important;
+        border-bottom: 0.5px solid rgba(163, 163, 163, 0.589);
+    }
+    header nav ul li a{
+        padding-left: 50px;
+    }
+    header nav ul li ul li{
+        border:none;
+        width: 200px;
+    }
+    header nav ul li ul li a{
+        padding-left: 65px;
+        height: 40px;
+        color: rgba(255, 255, 255, 0.438)
+    }
+    .logo {
+        display: none;
+    }
+    .sign {
+        display:none;
+    }
+    .signShow {
+        display: block;
+    }
+    .show {
+        display:inline-block;
+    }
+    .box {
+        position: absolute;
+        display: inline-block;
+    }
+    .bell{
+        display: inline-block;
+    }
+    .search {
+        display: inline-block;
+    }
+    #box1{
+        background: rgb(0, 135, 197)
+    }
+    #box2{
+        background: rgb(197, 0, 154)
+    }
+    #box3{
+        background: rgb(197, 112, 0)
+    }
+    #box4{
+        background: rgb(164, 0, 197)
+    }
+    #box5{
+        background: rgb(0, 197, 0)
+    }
+    #box6{
+        background: rgb(97, 97, 97)
+    }
+    header nav ul li.active ul {
+        position: relative;
+        margin-bottom: 15px;
+        opacity: 1;
+        transition: all 0.3s ease-out;
+    }
+}
