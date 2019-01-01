@@ -48,38 +48,41 @@
       </div>
       <label class="nightMode_Label">
           <input type="checkbox" id="nightMode_Check">
-          <div class="nightMode_button">
+          <div class="night">
             <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          <div class="day show">
+            <i class="fas fa-sun" aria-hidden="true"></i>
           </div>
         </label>
     </nav>
     <div class="profileContainer">
-    <div class="Profile-card">
-      <div class="top">
-          <span ng-click="profileClose()" class="close"> <i class="fas fa-times"></i> </span>
-        <div id="rectangle"></div>
-        <img src="p.jpg" alt="">
-      </div>
-      <div class="profilecontent">
-        <h2>{{currentName}}</h2>
-        <h4>Email: {{currentEmail}}</h4>
-        <h4>Phone: {{currentPhone}}</h4>
-        <p>
-          Your Current Balance is: 
-          <strong>{{currrentBalance}}</strong>
-        </p>
-        <br>
-        <ul>
-          <li><a class="fas fa-user-friends" ng-click="userlistClick()" style="color:white"></a></li>
-          <li><a class="fas fa-cogs" style="color:white"></a></li>
-        </ul>
+      <div class="Profile-card">
+        <div class="top">
+            <span ng-click="profileClose()" class="close"> <i class="fas fa-times"></i> </span>
+          <div id="rectangle"></div>
+          <img src="p.jpg" alt="">
         </div>
-        <div class="footer">
-          <div id="rectangle1">
+        <div class="profilecontent">
+          <h2>{{currentName}}</h2>
+          <h4>Email: {{currentEmail}}</h4>
+          <h4>Phone: {{currentPhone}}</h4>
+          <p>
+            Your Current Balance is: 
+            <strong>{{currrentBalance}}</strong>
+          </p>
+          <br>
+          <ul>
+            <li><a class="fas fa-user-friends" ng-click="userlistClick()" style="color:white"></a></li>
+            <li><a class="fas fa-cogs" style="color:white"></a></li>
+          </ul>
+          </div>
+          <div class="footer">
+            <div id="rectangle1">
+          </div>
+          <p></p>
+          </div>
         </div>
-        <p></p>
-        </div>
-      </div>
       </div>
 
     <div class="container" >
@@ -102,7 +105,11 @@
     </h2>
   
     <div class="row" ng-show="myVar">
+
       <div class='col-9 centered' style="margin:auto;margin-bottom: 50px">
+        <label>From: </label><input style="margin: 30px;"type="text" id="text-calendar1" class="calendar" ng-model="date1"/>
+        <label>To: </label><input style="margin: 40px; margin-right: 10px;" type="text" id="text-calendar2" class="calendar" ng-model="date2"/>
+        <button ng-click="filte()">Filte</button>
         <table id="myTab"></table>
       </div>
     </div>

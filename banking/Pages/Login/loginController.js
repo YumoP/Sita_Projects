@@ -2,10 +2,47 @@ var user = "shiva.gunti@sitacorp.com";
 var password = "shiva";
 var currentUser = new String();
 var currentName = new String();
+var d1 = new Date();
+var d2 = new Date();
+var fulldata = [];
 myapp.controller('loginController', function($scope, $location, $http){
-
-
-
+	$('.night').click(function(){
+		$(this).toggleClass('show');
+		$('.day').toggleClass('show');
+	});
+	$('.day').click(function(){
+		$(this).toggleClass('show');
+		$('.night').toggleClass('show');
+	});
+	$(function() {
+		$('#text-calendar1').pignoseCalendar({
+			format: 'YYYY-MM-DD' // date format string. (2017-02-02)
+		});
+		$('#text-calendar2').pignoseCalendar({
+			format: 'YYYY-MM-DD' // date format string. (2017-02-02)
+		});
+	});
+	function prepareDate(d) {
+		[y, m, d] = d.split("-"); //Split the string
+		return [y, m - 1, d]; //Return as an array with y,m,d sequence
+	}
+	$scope.filte = function(){
+		var str1 = $('#text-calendar1').val();
+		var str2 = $('#text-calendar2').val();
+		d1 = new Date(...prepareDate(str1));
+		d2 = new Date(...prepareDate(str2));
+		var currentdata = [];
+		for(var item in fulldata){
+			var date = new Date(fulldata[item].date);
+			if(date >= d1 && date <= d2){
+				currentdata.push(fulldata[item]);
+			}
+		}
+		console.log(currentdata);
+		
+		$("#myTab").bootstrapTable('destroy');
+		createTable(currentdata);
+	}
 	window.onkeydown = function(e) {
 		var key = e.keyCode ? e.keyCode : e.which;
 		if (key == 13 && $scope.booleanVal==true) {
@@ -121,92 +158,85 @@ myapp.controller('loginController', function($scope, $location, $http){
 			alert("not valid");
 		}
 	}
+	function createTable(data){
+		var headerdata = [{
+			field: 'paymentno',
+			title: 'paymentno',
+			align: 'left',
+			valign: 'top',
+			sortable: true,
+			formatter:mobileFormat
+		}, {
+			field: 'totalamount',
+			title: 'totalamount',
+			align: 'left',
+			valign: 'top',
+			sortable: true
+		}, {
+			field: 'date',
+			title: 'date',
+			align: 'left',
+			valign: 'top',
+			sortable: true
+		}, {
+			field: 'paymentamount',
+			title: 'paymentamount',
+			align: 'left',
+			valign: 'top',
+			sortable: true
+		}, {
+			field: 'marchant',
+			title: 'marchant',
+			align: 'left',
+			valign: 'top',
+			sortable: true
+		}]
+		var tableOptions = {
+			data: data,
+			columns:headerdata,
+			rowStyle: function (row, index) {
+				return { classes: 'none' };
+			},
+			cache: false,
+			striped: true,
+			pagination: true,
+			pageSize: 5,
+			pageList: "[5, 10, 25, 50, 100, ALL]",
+			search: true,
+			flat:true,
+			showColumns: true,
+			showRefresh: false,
+			minimumCountColumns: 2,
+			clickToSelect: false,
+			showToggle: true,
+			maintainSelected: true,
+			showPaginationSwitch: true,
+			mobileResponsive:true,
+			smartDisplay:true
+		};
+		$("#myTab").bootstrapTable(tableOptions);
+		
+		function mobileFormat(input,val) {
+			return '<p>'+input+'</p>'	
+					+'<div class="payment-info">'
+					+'		<a class="payment-title">$ '+val.paymentamount
+					+'          <span class="label label-warning pull-right">'+val.date+'</span>'
+					+'		</a>'
+					+'	    <span class="payment-description">'+val.marchant
+					+'		</span>'
+					+'</div>'		
+		}
+	}
 	$scope.getTrans = function(){
 		$http({
 			method : "GET",
 			url : "http://helpdesk.sitacorp.com:8080/registration/getpayment"
 		}).then(function mySuccess(response) {
-			var data = response.data;
 			if(response.data.status === "success"){
-				var mydata = response.data.data;
-				localStorage.setItem("balance", mydata[mydata.length-1].totalamount);
-				var headerdata = [{
-					field: 'paymentno',
-					title: 'paymentno',
-					align: 'left',
-					valign: 'top',
-					sortable: true,
-					formatter:mobileFormat
-				}, {
-					field: 'totalamount',
-					title: 'totalamount',
-					align: 'left',
-					valign: 'top',
-					sortable: true
-				}, {
-					field: 'date',
-					title: 'date',
-					align: 'left',
-					valign: 'top',
-					sortable: true
-				}, {
-					field: 'paymentamount',
-					title: 'paymentamount',
-					align: 'left',
-					valign: 'top',
-					sortable: true
-				}, {
-					field: 'marchant',
-					title: 'marchant',
-					align: 'left',
-					valign: 'top',
-					sortable: true
-				}
-			]
+				fulldata = response.data.data;
+				localStorage.setItem("balance", fulldata[fulldata.length-1].totalamount);
 				$scope.currrentBalance = localStorage.getItem("balance");
-				var tableOptions = {
-					data: mydata,
-					columns:headerdata,
-					rowStyle: function (row, index) {
-						return { classes: 'none' };
-					},
-					cache: false,
-					//height: 400,
-					striped: true,
-					pagination: true,
-					pageSize: 5,
-					//pageList: [5, 10, 25, 50, 100, 200],
-					pageList: "[5, 10, 25, 50, 100, ALL]",
-					search: true,
-					flat:true,
-					showColumns: true,
-					showRefresh: false,
-					minimumCountColumns: 2,
-					clickToSelect: false,
-					showToggle: true,
-					maintainSelected: true,
-					
-					//showExport: true,
-					//detailView: true,
-					//detailFormatter: detailFormatter,
-					showPaginationSwitch: true,
-					mobileResponsive:true,
-					smartDisplay:true
-					/* columns:  */
-				};
-				
-				$("#myTab").bootstrapTable(tableOptions);
-				
-				function mobileFormat(input,val) {
-					return '<p>'+input+'</p>'	
-							+'<div class="payment-info">'
-							+'		<a class="payment-title">$ '+val.paymentamount
-							+'          <span class="label label-warning pull-right">'+val.date+'</span>'
-							+'		</a>'
-							+'	    <span class="payment-description">'+val.marchant
-							+'		</span>'
-							+'</div>'		
-				}
+				createTable(fulldata);
 			}else{
 				console.log("failed")
 			}
