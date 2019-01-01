@@ -43,25 +43,69 @@
                     <li><div class="box" id="box6">6</div><a class="button" href="#">Johhny Applesed</a></li>
                 </ul>
             </nav>
-            <div class="menu-toggle menu-toggle-e show"><i class="fas fa-equals"></i></div>
-            <div class="menu-toggle menu-toggle-t"><i class="fas fa-times"></i></div>
+            <!-- <div class="menu-toggle menu-toggle-e show"><i class="fas fa-equals"></i></div>
+            <div class="menu-toggle menu-toggle-t"><i class="fas fa-times"></i></div> -->
+            <div class="toggle">
+                <svg width="52" height="52">
+                    <path id="first" d="M 15 20 L 35 20 C 45 20 45 37.5 30 42.5 A 20 20 0 0 1 10 10 L 40 40"></path>
+                    <path id="second" d="M 35 30 L 15 30 C 5 30 5 10 20 7.5 A 20 19.5 0 1 1 10 40 L 40 10"></path>
+                </svg>
+                <div class="trigger"></div>
+            </div>
             
         </header>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://www.kodhus.com/moveit.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".menu-toggle").click(function(){
-                    $('nav').toggleClass('active');
-                    $('.logomt').toggleClass('show');
-                    $('.logomr').toggleClass('show');
-                    $('.menu-toggle-e').toggleClass('show');
-                    $('.menu-toggle-t').toggleClass('show');
+                    
+                    // $('.menu-toggle-e').toggleClass('show');
+                    // $('.menu-toggle-t').toggleClass('show');
                 });
                 $('.sub-menu').click(function(){
                     // $(this).siblings().removeClass('active');
                     $(this).toggleClass('active');
                     jQuery(this).find('.expand').toggleClass('signShow');
                     jQuery(this).find('.shrink').toggleClass('signShow');
+                });
+                Moveit.put(first, {
+                    start : '0%',
+                    end :'13.8%'
+                });
+                Moveit.put(second, {
+                    start : '0%',
+                    end :'11%'
+                });
+                var open = false;
+                $(".trigger").click(function(){
+                    $('nav').toggleClass('active');
+                    $('.logomt').toggleClass('show');
+                    $('.logomr').toggleClass('show');
+                    if(!open){
+                        Moveit.animate(first, {
+                            start:'77.5%',
+                            end: '93%',
+                            duration:0.7
+                        })
+                        Moveit.animate(second, {
+                            start:'81.5%',
+                            end: '94%',
+                            duration:0.7
+                        })
+                    }else{
+                        Moveit.animate(first, {
+                            start:'0%',
+                            end: '14%',
+                            duration:0.7
+                        })
+                        Moveit.animate(second, {
+                            start:'0%',
+                            end: '11.5%',
+                            duration:0.7
+                        })
+                    }
+                    open=!open;
                 });
             });
         </script>
