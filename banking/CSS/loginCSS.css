@@ -488,6 +488,10 @@ h1 {
   color: rgb(196, 217, 233);
   text-shadow: 0 0 10px rgba(33, 156,243,1),0 0 20px rgba(33, 156,243,0.5),0 0 30px rgba(33, 156,243,0.5);
 }
+input {
+  background: var(--background-color);
+  color: var(--text-color);
+}
 @media(max-height: 700px) {
   .button {
     top: 70%;
@@ -623,18 +627,17 @@ p{
   align-items: center;  
   justify-content: center;
   display: flex;
+  border:none;
 }
 .paypal-iframe {
   position: absolute;
   top: 0;
   border-radius: 8%;
-  border:2px solid;
+  border:none;
   width: 70%;
   height: 70%;
   border-radius: 8%;
-  border:2px solid;
   margin: auto;
-  border: 2px solid var(--text-color);
   border-radius: 3px;
   overflow: hidden !important;
 }

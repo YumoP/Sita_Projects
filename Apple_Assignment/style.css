@@ -92,7 +92,7 @@ header nav ul li a:hover{
   }
   .expand-toggle{
     display:inline-block;
-    top:-70px;
+    top:-80px;
   }
   .expand-toggle,
   .expand-toggle::before{

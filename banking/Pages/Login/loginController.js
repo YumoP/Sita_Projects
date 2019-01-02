@@ -53,8 +53,14 @@ myapp.controller('loginController', function($scope, $location, $http){
 		}
 	 }
 	$(document).on('scroll', function(){
-		$(".subtitle1").css({"letter-spacing": window.scrollY/8.2 + "px", "opacity": 1 - window.scrollY * 0.22 / 100, 
-		"font-size": 60 - window.scrollY/7.5 + "px", "height": 72 - window.scrollY*0.11 + "px"});
+		console.log(window.scrollY);
+		if(window.scrollY >= 150) {
+			$(".subtitle1").css({"letter-spacing": (window.scrollY - 150)/8.2 + "px", "opacity": 1 - (window.scrollY - 150) * 0.22 / 100, 
+			"font-size": 60 - (window.scrollY - 150)/7.5 + "px", "height": 72 - (window.scrollY - 150)*0.11 + "px"});
+		}
+		if(window.scrollY >= 780 && window.scrollY < 1140) {
+			$(".paypal-iframe").css({"height":(70 + (window.scrollY - 780)/12) + "%", "width":(70 + (window.scrollY - 780)/12) + "%"});
+		}
 	});
 	$scope.onloadFun = function() {
 		var date = new Date();
