@@ -19,8 +19,9 @@
                     <li class="sub-menu">
                         <div class="box" id="box2">2</div>
                         <a class="button" href="#">Connection</a>
-                        <div class="sign expand signShow" id="expand1"><i class="fas fa-plus"></i></div>
-                        <div class="sign shrink" id="shrink1"><i class="fas fa-times"></i></div>
+                        <div class="sign">
+                            <span class="expand-toggle"></span>
+                        </div>
                         <ul>
                             <li><a href="#">Pipelines</a></li>
                             <li><a href="#">Requisition</a></li>
@@ -31,8 +32,9 @@
                     <li class="sub-menu">
                         <div class="box" id="box3">3</div>
                         <a class="button" href="#">Intelligence</a>
-                        <div class="sign expand signShow" id="expand2"><i class="fas fa-plus"></i></div>
-                        <div class="sign shrink" id="shrink2"><i class="fas fa-times"></i></div>
+                        <div class="sign">
+                            <span class="expand-toggle"></span>
+                        </div>
                         <ul>
                             <li><a href="#">Companies</a></li>
                             <li><a href="#">Schools</a></li>
@@ -58,24 +60,18 @@
         <script src="https://www.kodhus.com/moveit.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".menu-toggle").click(function(){
-                    
-                    // $('.menu-toggle-e').toggleClass('show');
-                    // $('.menu-toggle-t').toggleClass('show');
-                });
                 $('.sub-menu').click(function(){
                     // $(this).siblings().removeClass('active');
                     $(this).toggleClass('active');
-                    jQuery(this).find('.expand').toggleClass('signShow');
-                    jQuery(this).find('.shrink').toggleClass('signShow');
+                    jQuery(this).find('.sign').toggleClass('signShow');
                 });
                 Moveit.put(first, {
                     start : '0%',
-                    end :'13.8%'
+                    end :'13.7%'
                 });
                 Moveit.put(second, {
                     start : '0%',
-                    end :'11%'
+                    end :'11.07%'
                 });
                 var open = false;
                 $(".trigger").click(function(){
